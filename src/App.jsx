@@ -109,6 +109,7 @@ export default function App() {
                 totalPages={totalPages}
                 paginate={paginate}
                 loading={loading}
+                 blogsPerPage={blogsPerPage} 
               />
     )
             }
