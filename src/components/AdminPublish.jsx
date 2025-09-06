@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function AdminPublish({ onAddBlog }) {
+export default function AdminPublish({ onAddBlog, onRefresh  }) {
   const [form, setForm] = useState({
     title: "",
     content: "",
@@ -22,9 +22,11 @@ export default function AdminPublish({ onAddBlog }) {
       mainPhoto: form.mainPhoto,
     };
     await onAddBlog(payload);
+    await onRefresh();  
     setForm({ title: "", content: "", author: "Admin", images: [], mainPhoto: "" });
+    alert("blog added");
   };
-
+       
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">Create New Post</h2>

@@ -22,7 +22,7 @@ export default function BlogDetail({ backendURL }) {
           createdAt: b.createdAt ?? b.CreatedAt,
         });
       } catch (err) {
-        console.error("Error fetching blog:", err);
+        // console.error("Error fetching blog:", err);
         setBlog(null);
       }
     };
@@ -42,13 +42,13 @@ export default function BlogDetail({ backendURL }) {
       <h1 className="text-3xl font-bold text-gray-800">{blog.title} </h1>
       {/* (ID: {blog.id}) */}
       <p className="text-gray-500 mb-4">By {blog.author}</p>
-      {blog.mainPhoto && (
+      {/* {blog.mainPhoto && (
         <img
           src={blog.mainPhoto}
-          alt="Main Blog"
+          alt="IMG"
           className="w-full rounded-lg my-4"
         />
-      )}
+      )} */}
       <div
         className="prose max-w-none"
         dangerouslySetInnerHTML={{ __html: blog.content }}

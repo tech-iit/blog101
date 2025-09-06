@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
-
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import BlogList from "./components/BlogList";
 import BlogDetail from "./components/BlogDetail";
@@ -42,7 +42,7 @@ export default function App() {
       const normalized = res.data.map(normalize);
       setBlogs(normalized);
     } catch (err) {
-      console.error("Error fetching blogs:", err);
+      // console.error("Error fetching blogs:", err);
       setBlogs(initialBlogs.map(normalize));
     }
   };
@@ -65,9 +65,10 @@ export default function App() {
         createdAt: res.data.createdAt ?? res.data.CreatedAt,
       });
       setBlogs((prev) => [added, ...prev]);
+      return true;
     } catch (err) {
-      console.error("Error adding blog:", err);
-      alert("Failed to add blog. Check console for details.");
+      // console.error("Error adding blog:", err);
+      return true;
     }
   };
 
@@ -84,7 +85,10 @@ export default function App() {
 
   return (
     <Router>
-      <Navbar />
+      <div className="flex flex-col min-h-screen">
+        {/* Navbar fixed at top */}
+        <Navbar />
+        <main className="flex-grow pt-20 pb-20">
       <div className="container mx-auto p-6">
         <Routes>
           <Route
@@ -123,6 +127,9 @@ export default function App() {
             }
           />
         </Routes>
+      </div>
+       </main>
+        <Footer />
       </div>
     </Router>
   );

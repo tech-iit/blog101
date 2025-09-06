@@ -28,9 +28,11 @@ export default function AdminManagePage({ blogs, onRefresh, updateBlogs }) {
         });
         if (!response.ok) throw new Error("Failed to delete");
         updateBlogs(blogs.filter((blog) => blog.id !== id));
+        await onRefresh(); 
         alert("Blog deleted successfully!");
       } catch (err) {
-        console.error("Error deleting blog:", err);
+       
+      
         alert("Failed to delete blog. Check console for details.");
       }
     }
@@ -69,9 +71,10 @@ export default function AdminManagePage({ blogs, onRefresh, updateBlogs }) {
       }
       setEditBlogId(null);
       setEditForm({ title: "", content: "", author: "Admin", images: [], mainPhoto: "" });
+      await onRefresh(); 
       alert("Blog updated successfully!");
     } catch (err) {
-      console.error("Error updating blog:", err);
+      // console.error("Error updating blog:", err);
       alert("Failed to update blog. Check console for details.");
     }
   };
