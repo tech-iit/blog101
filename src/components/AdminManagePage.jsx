@@ -53,7 +53,8 @@ export default function AdminManagePage({ blogs, onRefresh, updateBlogs }) {
       return;
     }
     try {
-      const { mainPhoto, ...payload } = editForm;
+      // const { mainPhoto, ...payload } = editForm;
+       const payload = { ...editForm };
       const response = await fetch(`https://myblogbackendapp-g7ajfddhh2eddrgt.centralindia-01.azurewebsites.net/api/blogs/${editBlogId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },

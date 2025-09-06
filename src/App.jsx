@@ -53,7 +53,8 @@ export default function App() {
 
   const handleAddBlog = async (newBlog) => {
     try {
-      const { mainPhoto, ...payload } = newBlog;
+      // const { mainPhoto, ...payload } = newBlog;
+       const payload = { ...newBlog };
       const res = await axios.post(`${backendURL}/api/blogs`, payload);
       const added = normalize({
         id: res.data.id ?? res.data.Id,
