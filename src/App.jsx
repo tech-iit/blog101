@@ -14,6 +14,7 @@ export default function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const blogsPerPage = 10;
+ const [loading, setLoading] = useState(true); // new state
 
   const backendURL = "https://myblogbackendapp-g7ajfddhh2eddrgt.centralindia-01.azurewebsites.net";
 
@@ -37,6 +38,7 @@ export default function App() {
   };
 
   const fetchBlogs = async () => {
+    setLoading(true);
     try {
       const res = await axios.get(`${backendURL}/api/blogs`);
       const normalized = res.data.map(normalize);
@@ -45,6 +47,7 @@ export default function App() {
       // console.error("Error fetching blogs:", err);
       setBlogs(initialBlogs.map(normalize));
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -99,6 +102,7 @@ export default function App() {
                 currentPage={currentPage}
                 totalPages={totalPages}
                 paginate={paginate}
+                loading={loading}
               />
             }
           />

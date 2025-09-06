@@ -1,7 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function BlogList({ blogs, currentPage, totalPages, paginate }) {
+export default function BlogList({ blogs, currentPage, totalPages, paginate,loading }) {
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="loader border-t-4 border-b-4 border-indigo-600 w-12 h-12 rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (!blogs || blogs.length === 0) {
+    return <p className="text-gray-600 text-center">No blogs available.</p>;
+  }
   return (
     <div>
       <h1 className="text-3xl font-bold text-gray-800 mb-8 border-b-2 border-indigo-200 pb-2">Blog List</h1>
