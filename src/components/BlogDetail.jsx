@@ -53,19 +53,6 @@ export default function BlogDetail({ backendURL }) {
         className="prose max-w-none"
         dangerouslySetInnerHTML={{ __html: blog.content }}
       />
-      {blog.images && blog.images.length > 0 && (
-        <div className="mt-4">
-          <h3 className="text-lg font-semibold">Additional Images:</h3>
-          {blog.images.map((img, i) => (
-            <img
-              key={i}
-              src={img}
-              alt={`Blog ${i}`}
-              className="w-full rounded-lg my-2"
-            />
-          ))}
-        </div>
-      )}
     </div>
   );
 }
