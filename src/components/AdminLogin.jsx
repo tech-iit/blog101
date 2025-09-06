@@ -10,7 +10,7 @@ export default function AdminLogin({ onLogin, onAddBlog, onRefresh, updateBlogs,
   const handleLogin = () => {
     if (
       credentials.email === "admin@blog.com" &&
-      credentials.password === "admin123"
+      credentials.password === "AdminBlog@8094"
     ) {
       setIsLoggedIn(true);
       onLogin();
@@ -78,7 +78,7 @@ export default function AdminLogin({ onLogin, onAddBlog, onRefresh, updateBlogs,
     <div className="container mx-auto p-6">
       <AdminPublish onAddBlog={onAddBlog} onRefresh={onRefresh} />
       <button
-        onClick={() => navigate("/admin/manage")}
+        onClick={() => navigate("/admin/manage", { state: { isLoggedIn: isLoggedIn } })}
         className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200 font-medium shadow-md hover:shadow-lg"
       >
         Manage Blogs

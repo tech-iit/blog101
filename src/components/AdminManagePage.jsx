@@ -1,6 +1,24 @@
 import React, { useState } from "react";
-
+import { useLocation, useNavigate } from "react-router-dom";
 export default function AdminManagePage({ blogs, onRefresh, updateBlogs }) {
+
+   const location = useLocation();
+  const navigate = useNavigate();
+  const isLoggedIn = location.state?.isLoggedIn || false; // get from props/state
+   if (!isLoggedIn) {
+    return (
+      <div className="container mx-auto p-6 text-center">
+        <h1 className="text-2xl font-bold mb-4">Access Denied</h1>
+        <p className="text-red-600">You are not authorized to view this page.</p>
+        <button
+          onClick={() => navigate("/admin")}
+          className="mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+        >
+          Go to Login
+        </button>
+      </div>
+    );
+  }
   const [editBlogId, setEditBlogId] = useState(null);
   const [editForm, setEditForm] = useState({
     title: "",
