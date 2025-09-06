@@ -96,7 +96,13 @@ export default function App() {
         <Routes>
           <Route
             path="/"
+            
             element={
+               loading ? (
+      <div className="flex justify-center items-center h-screen">
+        <div className="loader"></div>
+      </div>
+    ) : (
               <BlogList
                 blogs={currentBlogs}
                 currentPage={currentPage}
@@ -104,6 +110,7 @@ export default function App() {
                 paginate={paginate}
                 loading={loading}
               />
+    )
             }
           />
           <Route path="/blog/:id" element={<BlogDetail backendURL={backendURL} />} />
