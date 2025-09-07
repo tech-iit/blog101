@@ -50,8 +50,7 @@ html, body, #root {
 .container {
   padding-left: 0 !important;
   padding-right: 0 !important;
-  /* margin-left: 0 !important; */
-  /* /* margin-left: 0.5px; */
-  margin-left: 0.4px; 
-  max-width: 100% !important;
+  margin-left: 1px;
+  max-width: calc(100% - 1px) !important; /* Subtract margin-left from max-width */
+  width: calc(100% - 1px); /* Ensure width accounts for margin */
 }
