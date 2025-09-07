@@ -44,7 +44,7 @@ export default function BlogList({ blogs, currentPage, totalPages, paginate, blo
   );
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8 flex flex-col min-h-[80vh]">
+    <div className="w-full flex flex-col min-h-[80vh]">
       <h1 className="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-indigo-200 pb-2">
         Latest Blogs
       </h1>
