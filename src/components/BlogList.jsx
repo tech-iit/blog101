@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function BlogList({ blogs, currentPage, totalPages, paginate, blogsPerPage, loading }) {
   if (loading) {
@@ -52,24 +53,31 @@ export default function BlogList({ blogs, currentPage, totalPages, paginate, blo
       {/* Pagination at the top */}
       <Pagination />
 
-      {/* Blog list */}
-      <ul className="space-y-4 flex-grow">
+      {/* Blog list with animation */}
+      <ul className="space-y-6 flex-grow">
         {blogs.map((blog, index) => {
-          const globalIndex = (currentPage - 1) * blogsPerPage + index + 1; // Global numbering
+          const globalIndex = (currentPage - 1) * blogsPerPage + index + 1;
           return (
-            <li key={blog.id} className="hover:translate-x-1 transition-transform duration-200">
+            <motion.li
+              key={blog.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: false, amount: 0.1 }}
+              className="hover:translate-x-1 transition-transform duration-200"
+            >
               <Link to={`/blog/${blog.id}`} className="group block">
                 <h2 className="text-xl font-semibold text-indigo-600 group-hover:text-indigo-800 transition-colors duration-300">
                   {globalIndex}. {blog.title}
                 </h2>
                 <p className="text-gray-600 text-sm mt-1">{getTeaser(blog.content)}</p>
               </Link>
-            </li>
+            </motion.li>
           );
         })}
       </ul>
 
-      {/* Pagination at the bottom, fixed to bottom of list */}
+      {/* Pagination at the bottom */}
       <div className="mt-auto">
         <Pagination />
       </div>
